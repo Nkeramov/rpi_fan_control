@@ -1,4 +1,4 @@
-# Raspberry Pi fan control
+# Raspberry Pi Fan Control
 
 [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846.svg?logo=Raspberry-Pi)](https://www.raspberrypi.com/)
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
@@ -11,7 +11,7 @@ It includes implementations of a relay controller and a proportional controller.
 
 The fan is connected via a transistor switch to the 4th pin of the I/O ports. The fan connection pin can be changed in scripts. The remaining parameters can be set at startup.
 
-## Setting up and running the project
+## 🚀 Quick start
 Clone repository:
 ```bash 
 git clone https://github.com/Nkeramov/raspberry_pi_fan_control.git
@@ -46,7 +46,21 @@ chmod +x run.sh
 ```
 Script arguments can be changed.
 
-## Adding to startup
+## 🔌 Connection diagram
+
+The connection diagram is shown below. The fan is controlled by a transistor switch based on the IRLML2402 N-channel MOSFET. 
+
+<div align="center">
+    <img src="images/circuit.png">
+</div>
+
+In my case, I used a 12-volt fan instead of a 5-volt one, because experiments showed that the 5-volt fan was noticeably noisy even at minimum speed. The fan cools the radiator down to an acceptable 45 degrees pretty quickly. The photo also shows how the fan and transistor switch are connected to the board.
+
+<div align="center">
+    <img src="images/connection.jpg" width="75%">
+</div>
+
+## ⚙️  Adding to startup
 
 You can set up automatic script launch at system startup.
 
@@ -61,7 +75,7 @@ Add to the end of file this line:
 Press Ctrl+O → Enter → Ctrl+X to save and exit.
 With these few easy steps, you now have automatic fan control.
 
-## Contributing
+## 🤝 Contributing
 
 If you want to contribute, please follow these steps:
 
@@ -70,11 +84,11 @@ If you want to contribute, please follow these steps:
 3. Make your changes and commit them.
 4. Push to your fork and create a pull request.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Ref
+## 📚 References 
 
 - [Getting started](https://www.raspberrypi.com/documentation/computers/getting-started.html)
 - [Raspberry Pi OS](https://www.raspberrypi.com/documentation/computers/os.html)
