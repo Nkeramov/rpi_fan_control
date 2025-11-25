@@ -116,3 +116,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - [Getting started](https://www.raspberrypi.com/documentation/computers/getting-started.html)
 - [Raspberry Pi OS](https://www.raspberrypi.com/documentation/computers/os.html)
+- [RPi.GPIO](https://sourceforge.net/projects/raspberry-gpio-python/)
