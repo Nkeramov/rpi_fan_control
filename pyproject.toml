@@ -1,13 +1,16 @@
 [project]
-name = "rpi_fan_control"
+name = "rpi_system_info"
 version = "1.0.0"
-description = "Scripts for Raspberry Pi to control fan based on the CPU temperature"
+description = "Python scripts for Raspberry Pi to control fan based on the CPU temperature"
 authors = [
     {name = "Nizam Keramov", email = "keramov.nizam@gmail.com"},
 ]
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.11"
+dependencies = [
+    "RPi.GPIO == 0.7.1",
+]
 keywords = [ 
     "rpi",
     "raspberrypi",
@@ -17,7 +20,8 @@ keywords = [
     "gpio",
     "fan-controller",
     "relay-controller",
-    "pwm-controller"
+    "pwm-controller",
+    "monitoring"
 ]
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -25,7 +29,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Operating System :: POSIX :: Linux",
-    "Topic :: System :: Fan Control",
+    "Topic :: System :: Monitoring",
     "Topic :: Utilities",
 ]
 
@@ -33,14 +37,31 @@ classifiers = [
 Repository = "https://github.com/Nkeramov/rpi_fan_control"
 "Bug Tracker" = "https://github.com/Nkeramov/rpi_fan_control/issues"
 
+[build-system]
+requires = ["setuptools>=78.1.0", "wheel>=0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "mypy==1.18.2",
+    "ruff==0.4.4",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = [
+    "static*",
+    "templates*",
+    "tests*",
+    "docs*",
+    "*.egg-info*",
+]
+
 [tool.mypy]
 python_version = "3.11"
 strict = true
-# already included in strict = true, but left for clarity
-# disallow_untyped_defs = true
-# check_untyped_defs = true  
-# warn_return_any = true
-# warn_unused_configs = true
 ignore_missing_imports = true
 warn_redundant_casts = true
 warn_unused_ignores = true
