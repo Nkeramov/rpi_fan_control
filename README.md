@@ -12,23 +12,25 @@ It includes implementations of a relay controller and a proportional controller.
 The fan is connected via a transistor switch to the 4th pin of the I/O ports. The fan connection pin can be changed in scripts. The remaining parameters can be set at startup.
 
 ## 🚀 Quick start
+
+### Prerequisites
 Clone repository:
 ```bash 
-git clone https://github.com/Nkeramov/raspberry_pi_fan_control.git
+git clone https://github.com/Nkeramov/rpi_fan_control.git
 ```
-Switch to repo directory
+Switch to repo directory:
 ```bash 
-cd raspberry_pi_fan_control
+cd rpi_fan_control
 ```
-Сreate new virtual environment:
+### Traditional method with venv and pip
+Create and activate virtual environment:
 ```bash 
 python -m venv .venv 
+source .venv/bin/activate       # Linux/Mac
+# or
+./venv/Scripts/activate         # Windows
 ```
-Activate the virtual environment with the command:
-```bash 
-source .venv/bin/activate
-```
-Install dependencies from the requirements file:
+Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
@@ -40,11 +42,32 @@ Run proportional fan controller with command (args for example):
 ```bash
 python3 proportional_controller.py --temp 45 --delay 5 --p 15.0 --dmin 50 --dmax 100
 ```
-Or use a launch script `run.sh`, making it executable first
+### Modern method with uv
+Install dependencies and create virtual environment automatically:
+```bash
+uv sync
+```
+Run relay fan controller with command (virtual environment is handled automatically, args for example):
+```bash
+uv run relay_controller.py --lower 45 --upper 50 --delay 5
+```
+Run proportional fan controller with command (virtual environment is handled automatically, args for example):
+```bash
+uv run proportional_controller.py --temp 45 --delay 5 --p 15.0 --dmin 50 --dmax 100
+```
+Or with explicit activation:
+```bash
+source .venv/bin/activate       # After uv sync
+python3 relay_controller.py --lower 45 --upper 50 --delay 5
+# or
+python3 proportional_controller.py --temp 45 --delay 5 --p 15.0 --dmin 50 --dmax 100
+```
+
+Also you can use the launch script `run.sh`, making it executable first
 ```bash
 chmod +x run.sh
 ```
-Script arguments can be changed.
+The script arguments can be changed as desired.
 
 ## 🔌 Connection diagram
 
@@ -54,7 +77,8 @@ The connection diagram is shown below. The fan is controlled by a transistor swi
     <img src="images/circuit.png">
 </div>
 
-In my case, I used a 12-volt fan instead of a 5-volt one, because experiments showed that the 5-volt fan was noticeably noisy even at minimum speed. The fan cools the radiator down to an acceptable 45 degrees pretty quickly. The photo also shows how the fan and transistor switch are connected to the board.
+In my case, I used a 12-volt fan instead of a 5-volt one, because experiments 
+showed that the 5-volt fan was noticeably noisy even at minimum speed. The fan cools the radiator down to an acceptable 45 °C pretty quickly. The photo also shows how the fan and transistor switch are connected to the board.
 
 <div align="center">
     <img src="images/connection.jpg" width="75%">
